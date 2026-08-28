@@ -42,7 +42,12 @@ PALETA = {
 
 CSS = f"""
 <style>
+    /* --- Fondo y texto base --- */
     .stApp {{ background-color: {PALETA['fondo']}; color: {PALETA['texto']}; }}
+    .stApp p, .stApp span, .stApp label, .stApp li {{ color: {PALETA['texto']}; }}
+    h1, h2, h3, h4 {{ color: {PALETA['texto']}; }}
+
+    /* --- Tarjetas KPI (st.metric) --- */
     div[data-testid="stMetric"] {{
         background-color: {PALETA['superficie']};
         border: 1px solid #3A4359;
@@ -50,12 +55,42 @@ CSS = f"""
         padding: 14px 16px;
     }}
     div[data-testid="stMetricLabel"] {{ color: {PALETA['gris']}; }}
+    div[data-testid="stMetricValue"] {{ color: {PALETA['texto']}; }}
+
+    /* --- Sidebar: fondo y TODO su texto interior --- */
     section[data-testid="stSidebar"] {{ background-color: {PALETA['superficie']}; }}
+    section[data-testid="stSidebar"] * {{ color: {PALETA['texto']} !important; }}
+
+    /* --- Expander ("Fuente de datos", etc.) --- */
+    div[data-testid="stExpander"] {{
+        background-color: {PALETA['superficie']};
+        border: 1px solid #3A4359;
+        border-radius: 8px;
+    }}
+    div[data-testid="stExpander"] summary {{ color: {PALETA['texto']} !important; }}
+
+    /* --- Radio buttons y selectbox (texto de opciones) --- */
+    div[data-testid="stRadio"] label p {{ color: {PALETA['texto']} !important; }}
+    div[data-testid="stSelectbox"] label p {{ color: {PALETA['texto']} !important; }}
+    div[data-baseweb="select"] {{ background-color: {PALETA['fondo']}; }}
+    div[data-baseweb="select"] * {{ color: {PALETA['texto']} !important; }}
+    ul[data-baseweb="menu"] {{ background-color: {PALETA['superficie']}; }}
+    ul[data-baseweb="menu"] li {{ color: {PALETA['texto']} !important; }}
+
+    /* --- File uploader --- */
+    section[data-testid="stFileUploaderDropzone"] {{
+        background-color: {PALETA['fondo']};
+        border: 1px dashed #3A4359;
+    }}
+
+    /* --- Alertas (st.info / st.warning) mantienen buen contraste --- */
+    div[data-testid="stAlert"] p {{ color: {PALETA['texto']} !important; }}
+
+    /* --- Semáforos en texto libre --- */
     .semaforo-verde {{ color: {PALETA['verde']}; font-weight: 700; }}
     .semaforo-ambar {{ color: {PALETA['ambar']}; font-weight: 700; }}
     .semaforo-rojo  {{ color: {PALETA['rojo']};  font-weight: 700; }}
     .semaforo-gris  {{ color: {PALETA['gris']};  font-weight: 700; }}
-    h1, h2, h3 {{ color: {PALETA['texto']}; }}
 </style>
 """
 st.markdown(CSS, unsafe_allow_html=True)
